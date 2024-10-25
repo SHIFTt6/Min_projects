@@ -1,0 +1,116 @@
+
+    <section class="Header">
+      <div class="div-1">
+        <h1 class="text-header">YOUR ICE CHAINS ARE HERE</h1>
+        <a href="index.html" id="goback">Go Home</a>
+        <a href="cart.html"><h3 id="view-cart">View Cart</h3></a>
+      </div>
+      <div id="cart">
+        <!-- <div id="cart"> -->
+        <i class="fa-solid fa-cart-shopping" id="shoppinglogonav"></i>
+        <span id="cart-count">0</span>
+        <!-- Cart count display -->
+      </div>
+      <a href="index.html">
+        <i
+          class="fa-solid fa-circle-arrow-left"
+          id="left-arrow"
+          style="cursor: pointer"
+        ></i
+      ></a>
+      <span class="back-text">BACK</span>
+      <div class="down-navbar">
+        <h3><a href="index.html" >HOME</a></h3>
+        <h3><a href="shopcollection.html" class="active-navbar">SHOPPING COLLECTION</a></h3>
+        <h3><a href="shopcollection3.html">ABOUT</a></h3>
+      </div>
+    </section>
+
+
+
+
+    /*  Nav Slider */
+
+document.getElementById("bars").addEventListener("click", function () {
+  const navSlider = document.getElementById("navSlider");
+  // Toggle the slider's position
+  if (navSlider.style.right === "0px") {
+    navSlider.style.right = "-500px"; // Hide
+  } else {
+    navSlider.style.right = "0px"; // Show
+  }
+});
+
+
+
+
+
+
+
+
+
+
+//  ADD TO CART */
+
+var additemid = 0;
+function addtocart(item) {
+  additemid += 1;
+
+
+  //*-- Create a div for the selected item
+
+  var selecteditem = document.createElement("div");
+  selecteditem.classList.add("cartimg");
+  selecteditem.setAttribute("id", additemid);
+
+
+  //*-- Get the image
+
+  var img = document.createElement("img");
+  img.setAttribute("src", item.children[0].currentSrc);
+
+
+  //*-- Get the product title (GUCCI ICED STAR)
+
+  var title = document.createElement("div");
+  title.innerText = item.querySelector(".des h4").innerText;
+
+
+  //*-- Get the product brand
+
+  var price = document.createElement("div");
+  price.innerText = item.querySelector(".des .price").innerText;
+
+
+  //*-- Create a delete button
+
+  var deleteBtn = document.createElement("button");
+  deleteBtn.innerText = 'Delete'
+
+
+  //*-- Set the delete function for the button
+
+  deleteBtn.setAttribute('onclick', 'del('+additemid+')');
+  deleteBtn.onclick = function () {
+    deleteItem(selecteditem);
+  };
+
+
+  //*-- Append elements to the selected item div
+
+  selecteditem.append(img);
+  selecteditem.append(title);
+  selecteditem.append(price);
+  selecteditem.append(deleteBtn);
+
+
+  //*-- Append the selected item to the cart
+
+  var cartitems = document.getElementById("title");
+  cartitems.append(selecteditem);
+}
+
+
+function del(item){
+  document.getElementById('item').remove();
+}
